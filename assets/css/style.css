@@ -3008,7 +3008,7 @@ hr {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 
 /* line 958, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_common.scss */
@@ -3402,7 +3402,7 @@ hr {
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 
 /* line 44, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_h1-hero.scss */
