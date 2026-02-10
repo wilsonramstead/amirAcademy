@@ -4389,27 +4389,28 @@ hr {
 
 /* line 22, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_gallery.scss */
 .gallery-area .box .gallery-img {
-  height: 565px;
+  height: 350px;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* line 27, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_gallery.scss */
 .gallery-area .box .big-img {
-  height: 500px;
+  height: 350px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   /* line 27, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_gallery.scss */
   .gallery-area .box .big-img {
-    height: 435px;
+    height: 300px;
   }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   /* line 27, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_gallery.scss */
   .gallery-area .box .big-img {
-    height: 435px;
+    height: 250px;
   }
 }
 
