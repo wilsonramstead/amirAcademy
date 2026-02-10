@@ -3398,17 +3398,35 @@ hr {
 /* line 37, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_h1-hero.scss */
 .slider-area {
   margin-top: -1px;
-  background-image: url(../img/hero/h1_hero.png);
-  background-repeat: no-repeat;
-  background-position: bottom right;
-  background-size: 75% auto;
-  background-attachment: scroll;
+  background-image:
+    url(../img/hero/h1_hero.png),
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 15%,
+      rgba(180, 0, 0, 0.9) 15%,
+      rgba(200, 0, 0, 0.7) 18%,
+      rgba(120, 0, 0, 0.4) 20%,
+      rgba(180, 0, 0, 0.8) 21%,
+      rgba(200, 0, 0, 0.6) 24%,
+      rgba(100, 0, 0, 0.3) 26%,
+      rgba(160, 0, 0, 0.7) 27%,
+      rgba(180, 0, 0, 0.4) 30%,
+      transparent 32%,
+      transparent 100%
+    );
+  background-repeat: no-repeat, no-repeat;
+  background-position: bottom right, center center;
+  background-size: 75% auto, 100% 100%;
+  background-attachment: scroll, scroll;
   background-color: #000;
 }
 
 /* line 44, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_h1-hero.scss */
 .slider-area .hero__caption {
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
