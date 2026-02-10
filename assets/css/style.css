@@ -3400,9 +3400,10 @@ hr {
   margin-top: -1px;
   background-image: url(../img/hero/h1_hero.png);
   background-repeat: no-repeat;
-  background-position: top center;
-  background-size: cover;
+  background-position: bottom right;
+  background-size: 75% auto;
   background-attachment: scroll;
+  background-color: #000;
 }
 
 /* line 44, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_h1-hero.scss */
