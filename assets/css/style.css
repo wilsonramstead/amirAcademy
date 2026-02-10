@@ -7933,4 +7933,71 @@ del {
   margin-bottom: 10px;
 }
 
+/* Staff Section */
+.staff-area {
+  padding: 80px 0 40px;
+}
+
+.staff-member {
+  margin-bottom: 20px;
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(255, 0, 0, 0.15);
+}
+
+.staff-member:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.staff-img {
+  text-align: center;
+}
+
+.staff-img img {
+  max-width: 100%;
+  max-height: 550px;
+  object-fit: contain;
+}
+
+.staff-bio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.staff-bio h3 {
+  color: white;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.staff-bio .staff-title {
+  color: #ff0000;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.staff-bio p {
+  color: #ccc;
+  font-size: 1.2rem;
+  line-height: 1.7;
+}
+
+@media only screen and (max-width: 991px) {
+  .staff-img {
+    margin-bottom: 25px;
+  }
+
+  .staff-bio {
+    text-align: center;
+  }
+
+  .staff-member {
+    padding: 30px 0;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
