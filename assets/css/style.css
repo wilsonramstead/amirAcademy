@@ -4566,7 +4566,8 @@ hr {
 }
 
 /* line 23, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_team.scss */
-.team-area .single-cat .cat-cap h5 > a {
+.team-area .single-cat .cat-cap h5 > a,
+.team-area .single-cat .cat-cap h5 {
   font-size: 30px;
   font-weight: 500;
   margin-bottom: 14px;
@@ -4581,14 +4582,16 @@ hr {
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   /* line 23, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_team.scss */
-  .team-area .single-cat .cat-cap h5 > a {
+  .team-area .single-cat .cat-cap h5 > a,
+  .team-area .single-cat .cat-cap h5 {
     font-size: 21px;
   }
 }
 
 @media (max-width: 575px) {
   /* line 23, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_team.scss */
-  .team-area .single-cat .cat-cap h5 > a {
+  .team-area .single-cat .cat-cap h5 > a,
+  .team-area .single-cat .cat-cap h5 {
     font-size: 23px;
   }
 }
@@ -4624,7 +4627,7 @@ hr {
 
 /* line 59, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_team.scss */
 .team-area .single-cat:hover .cat-cap h5 {
-  color: #000;
+  color: #fff;
 }
 
 /* line 5, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_footer.scss */
