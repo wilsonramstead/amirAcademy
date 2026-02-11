@@ -8009,4 +8009,130 @@ del {
   }
 }
 
+/* Events Page */
+.event-poster {
+  border: 2px solid rgba(255, 0, 0, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(255, 0, 0, 0.1);
+}
+.event-poster img {
+  width: 100%;
+  display: block;
+}
+
+.event-story {
+  color: #ccc;
+  font-size: 1.25rem;
+  line-height: 1.85;
+}
+.event-story p {
+  color: #ddd;
+  margin-bottom: 22px;
+}
+.event-location {
+  color: #ff0000;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.event-closing {
+  color: white;
+  font-size: 1.35rem;
+  font-weight: 600;
+  font-style: italic;
+  text-align: center;
+  margin-top: 35px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+.event-highlight {
+  margin: 40px 0;
+  padding: 35px 20px;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 12px;
+  background: rgba(255, 0, 0, 0.03);
+}
+.event-stat {
+  padding: 10px 0;
+}
+.event-stat .stat-number {
+  display: block;
+  color: #ff0000;
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 5px;
+}
+.event-stat .stat-label {
+  display: block;
+  color: #999;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Event Gallery - Masonry */
+.event-gallery {
+  columns: 4;
+  column-gap: 15px;
+}
+.event-gallery-item {
+  break-inside: avoid;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+.event-gallery-item img {
+  width: 100%;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.event-gallery-item:hover img {
+  transform: scale(1.03);
+}
+
+.event-gallery-legacy .event-gallery-item {
+  filter: sepia(0.15);
+}
+.event-gallery-legacy .event-gallery-item:hover {
+  filter: sepia(0);
+}
+
+@media only screen and (max-width: 1199px) {
+  .event-gallery {
+    columns: 3;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .event-gallery {
+    columns: 2;
+    column-gap: 10px;
+  }
+  .event-gallery-item {
+    margin-bottom: 10px;
+  }
+  .event-story {
+    font-size: 1.1rem;
+  }
+  .event-stat .stat-number {
+    font-size: 2rem;
+  }
+}
+@media only screen and (max-width: 575px) {
+  .event-gallery {
+    columns: 2;
+    column-gap: 8px;
+  }
+  .event-gallery-item {
+    margin-bottom: 8px;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
