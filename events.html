@@ -23,7 +23,123 @@
     <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Events page gallery improvements (portrait vs landscape) -->
+    <style>
+        /* shared section divider */
+        .events-divider {
+            width: 60px;
+            height: 3px;
+            background: #ff0000;
+            margin: 15px auto 0;
+        }
+
+        /* Replaces the old event-gallery flex behavior with responsive grids */
+        .event-gallery-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        /* Portrait grid: 4 desktop, 3 medium, 2 small, 1 tiny */
+        .event-gallery-grid.portrait {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        @media (max-width: 1199px) {
+            .event-gallery-grid.portrait { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 767px) {
+            .event-gallery-grid.portrait { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 400px) {
+            .event-gallery-grid.portrait { grid-template-columns: 1fr; }
+        }
+
+        /* Landscape grid: 2 desktop/tablet, 1 mobile */
+        .event-gallery-grid.landscape {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media (max-width: 767px) {
+            .event-gallery-grid.landscape { grid-template-columns: 1fr; }
+        }
+
+        /* Gallery item */
+        .event-gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,0,0,0.20);
+            background: rgba(255,255,255,0.02);
+            position: relative;
+        }
+        .event-gallery-item img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+        .event-gallery-item:hover img { transform: scale(1.05); }
+
+        /* Consistent sizing per orientation */
+        .event-gallery-grid.portrait .event-gallery-item { aspect-ratio: 3 / 4; }
+        .event-gallery-grid.landscape .event-gallery-item { aspect-ratio: 16 / 10; }
+
+        /* “View” pill */
+        .event-gallery-item::after {
+            content: "View";
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            font-family: "Oswald", sans-serif;
+            letter-spacing: 2px;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #fff;
+            background: rgba(255, 0, 0, 0.85);
+            padding: 6px 10px;
+            border-radius: 999px;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity .25s ease, transform .25s ease;
+        }
+        .event-gallery-item:hover::after {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (hover: none) {
+            .event-gallery-item::after { display: none; }
+        }
+
+        /* Group label */
+        .event-group-label {
+            color: #ff0000;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 1.05rem;
+            text-align: center;
+            margin: 35px 0 18px;
+        }
+        .event-group-sub {
+            text-align: center;
+            color: #bbb;
+            margin: -6px 0 22px;
+            font-size: 1.05rem;
+        }
+        .event-group-sep {
+            border-top: 1px solid rgba(255, 0, 0, 0.18);
+            margin-top: 35px;
+            padding-top: 5px;
+        }
+
+        /* Keep current poster looking like before */
+        .event-poster img {
+            width: 100%;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 0, 0, 0.3);
+            box-shadow: 0 4px 30px rgba(255, 0, 0, 0.1);
+        }
+    </style>
 </head>
+
 <body class="black-bg">
     <!-- ? Preloader Start -->
     <div id="preloader-active">
@@ -37,6 +153,7 @@
         </div>
     </div>
     <!-- Preloader Start -->
+
     <header>
         <!-- Header Start -->
         <div class="header-area header-transparent">
@@ -45,7 +162,10 @@
                     <div class="menu-wrapper d-flex align-items-center justify-content-between">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html" style="display: flex; align-items: center; gap: 10px;"><img src="assets/img/logo/logo.png" alt="Logo" style="height: 40px;"><h1 style="color: white; margin: 0;">AMIR ACADEMY</h1></a>
+                            <a href="index.html" style="display: flex; align-items: center; gap: 10px;">
+                                <img src="assets/img/logo/logo.png" alt="Logo" style="height: 40px;">
+                                <h1 style="color: white; margin: 0;">AMIR ACADEMY</h1>
+                            </a>
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu f-right d-none d-lg-block">
@@ -64,309 +184,381 @@
                         </div>
                         <!-- Header-btn -->
                         <div class="header-btns d-none d-lg-block f-right">
-                           <a href="contact.html" class="btn">Contact us</a>
-                       </div>
-                       <!-- Mobile Menu -->
-                       <div class="col-12">
-                        <div class="mobile_menu d-block d-lg-none"></div>
+                            <a href="contact.html" class="btn">Contact us</a>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Header End -->
-</header>
-<main>
-    <!--? Hero Start -->
-    <div class="slider-area2">
-        <div class="slider-height2 d-flex align-items-center">
+        <!-- Header End -->
+    </header>
+
+    <main>
+        <!--? Hero Start -->
+        <div class="slider-area2">
+            <div class="slider-height2 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap hero-cap2 pt-70">
+                                <h2>Battle of Tampa Bay</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero End -->
+
+        <!--? Event Posters Section -->
+        <section class="black-bg" style="padding: 80px 0 40px;">
             <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="hero-cap hero-cap2 pt-70">
-                            <h2>Battle of Tampa Bay</h2>
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 text-center mb-50 section-tittle2">
+                        <h2 style="color: white;">Next Event: May 9</h2>
+                        <div class="events-divider"></div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-8 col-sm-10 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
+                        <div class="event-poster">
+                            <!-- MUST stay at top (current fight card) -->
+                            <img src="assets/img/gallery/event25.png" alt="Battle of Tampa Bay Upcoming Event">
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Hero End -->
+        </section>
+        <!-- Event Posters End -->
 
-    <!--? Event Posters Section -->
-    <section class="black-bg" style="padding: 80px 0 40px;">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-12 text-center mb-50 section-tittle2">
-                    <h2 style="color: white;">Next Event: May 9</h2>
-                    <div style="width: 60px; height: 3px; background: #ff0000; margin: 15px auto 0;"></div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-6 col-md-8 col-sm-10 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
-                    <div class="event-poster">
-                        <img src="assets/img/gallery/event25.png" alt="Battle of Tampa Bay Upcoming Event">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Event Posters End -->
+        <!--? Event Story Section -->
+        <section class="black-bg" style="padding: 60px 0;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-md-12">
+                        <div class="event-story wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
+                            <p class="event-location">St. Petersburg, Florida</p>
 
-    <!--? Event Story Section -->
-    <section class="black-bg" style="padding: 60px 0;">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 col-md-12">
-                    <div class="event-story wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
-                        <p class="event-location">St. Petersburg, Florida</p>
+                            <p>Founded in 1997 by Amir Ardebily and his brothers, Kambiz Ardebily and Saeed Ardebily, Battle of Tampa Bay has grown into one of Florida's longest-running and most respected kickboxing and MMA event series.</p>
 
-                        <p>Founded in 1997 by Amir Ardebily and his brothers, Kambiz Ardebily and Saeed Ardebily, Battle of Tampa Bay has grown into one of Florida's longest-running and most respected kickboxing and MMA event series.</p>
+                            <p>The vision behind Battle of Tampa Bay was born from years of dedicated training, international travel, studying elite competitions, and working alongside world-class champions. After analyzing fight promotions around the globe, the Ardebily brothers set out to create something that had never been done before in the region: an amateur kickboxing event produced with the professionalism, structure, and production value of a major professional show.</p>
 
-                        <p>The vision behind Battle of Tampa Bay was born from years of dedicated training, international travel, studying elite competitions, and working alongside world-class champions. After analyzing fight promotions around the globe, the Ardebily brothers set out to create something that had never been done before in the region: an amateur kickboxing event produced with the professionalism, structure, and production value of a major professional show.</p>
-
-                        <div class="event-highlight wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
-                            <div class="row text-center">
-                                <div class="col-md-3 col-6">
-                                    <div class="event-stat">
-                                        <span class="stat-number">29</span>
-                                        <span class="stat-label">Events Held</span>
+                            <div class="event-highlight wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                                <div class="row text-center">
+                                    <div class="col-md-3 col-6">
+                                        <div class="event-stat">
+                                            <span class="stat-number">29</span>
+                                            <span class="stat-label">Events Held</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3 col-6">
-                                    <div class="event-stat">
-                                        <span class="stat-number">27+</span>
-                                        <span class="stat-label">Years Running</span>
+                                    <div class="col-md-3 col-6">
+                                        <div class="event-stat">
+                                            <span class="stat-number">27+</span>
+                                            <span class="stat-label">Years Running</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3 col-6">
-                                    <div class="event-stat">
-                                        <span class="stat-number">6+</span>
-                                        <span class="stat-label">Countries</span>
+                                    <div class="col-md-3 col-6">
+                                        <div class="event-stat">
+                                            <span class="stat-number">6+</span>
+                                            <span class="stat-label">Countries</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3 col-6">
-                                    <div class="event-stat">
-                                        <span class="stat-number">100%</span>
-                                        <span class="stat-label">Sold-Out Record</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <p>In 1998, that vision became reality. The first Battle of Tampa Bay event set a new standard by attracting more sponsors than many professional fight cards of its time&mdash;an unprecedented achievement for an amateur showcase. From day one, the mission was clear: give amateur fighters a true professional platform, complete with high-level organization, serious matchmaking, strong sponsorship backing, and a sold-out audience atmosphere.</p>
-
-                        <p>Since then, Battle of Tampa Bay has hosted 29 successful events, consistently drawing packed crowds and maintaining a record of sold-out shows. The event series has welcomed fighters from across the United States and internationally, including competitors from Canada, Italy, Germany, France, England, and other countries, making it a respected name within the global combat sports community.</p>
-
-                        <p>The promotion has provided a launchpad for countless fighters, many of whom have advanced to professional careers in kickboxing and MMA. Beyond competition, Battle of Tampa Bay has played a significant role in strengthening the Tampa Bay combat sports scene by uniting gyms, coaches, sponsors, and fans under one high-quality platform.</p>
-
-                        <p>For more than two decades, the event's continued success has been powered by the dedication of the Ardebily family and their team. Kambiz and Saeed Ardebily have remained instrumental in its development, and for the past 23 years, Fariba Kiani has played a key leadership role in managing and organizing the event alongside Amir Ardebily.</p>
-
-                        <p>With the next event scheduled for May 9, Battle of Tampa Bay continues its commitment to delivering elite-level amateur kickboxing, Muay Thai, and MMA in a professional setting&mdash;providing the Tampa Bay community with world-class combat sports entertainment.</p>
-
-                        <p class="event-closing">Battle of Tampa Bay remains dedicated to excellence, integrity, and showcasing the next generation of champions.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Event Story End -->
-
-    <!--? Recent Event Photos -->
-    <section class="black-bg" style="padding: 60px 0;">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-12 text-center mb-50 section-tittle2">
-                    <h2 style="color: white;">Latest Event</h2>
-                    <div style="width: 60px; height: 3px; background: #ff0000; margin: 15px auto 0;"></div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid" style="padding: 0 30px;">
-            <div class="event-gallery wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
-                <div class="event-gallery-item"><img src="assets/img/gallery/event11.png" alt="Battle of Tampa Bay"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event12.png" alt="Battle of Tampa Bay"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event13.png" alt="Battle of Tampa Bay"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event14.png" alt="Battle of Tampa Bay"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event15.png" alt="Battle of Tampa Bay"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event16.png" alt="Battle of Tampa Bay"></div>
-                <!-- <div class="event-gallery-item"><img src="assets/img/gallery/event17.png" alt="Battle of Tampa Bay"></div> -->
-                <div class="event-gallery-item"><img src="assets/img/gallery/event18.png" alt="Battle of Tampa Bay"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event19.png" alt="Battle of Tampa Bay"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event20.png" alt="Battle of Tampa Bay"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event21.png" alt="Battle of Tampa Bay"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event22.png" alt="Battle of Tampa Bay"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event23.png" alt="Battle of Tampa Bay"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event24.png" alt="Battle of Tampa Bay"></div>
-            </div>
-        </div>
-    </section>
-    <!-- Recent Event Photos End -->
-
-    <!--? Legacy Photos -->
-    <section class="black-bg" style="padding: 60px 0 80px;">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-12 text-center mb-50 section-tittle2">
-                    <h2 style="color: white;">Our Legacy</h2>
-                    <div style="width: 60px; height: 3px; background: #ff0000; margin: 15px auto 0;"></div>
-                    <p style="color: #999; margin-top: 20px; font-size: 1.2rem;">Photos from over two decades of Battle of Tampa Bay events</p>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid" style="padding: 0 30px;">
-            <div class="event-gallery event-gallery-legacy wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
-                <div class="event-gallery-item"><img src="assets/img/gallery/event1.png" alt="Battle of Tampa Bay Legacy"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event2.png" alt="Battle of Tampa Bay Legacy"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event3.png" alt="Battle of Tampa Bay Legacy"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event4.png" alt="Battle of Tampa Bay Legacy"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event5.png" alt="Battle of Tampa Bay Legacy"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event6.png" alt="Battle of Tampa Bay Legacy"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event7.png" alt="Battle of Tampa Bay Legacy"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event8.png" alt="Battle of Tampa Bay Legacy"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event9.png" alt="Battle of Tampa Bay Legacy"></div>
-                <div class="event-gallery-item"><img src="assets/img/gallery/event10.png" alt="Battle of Tampa Bay Legacy"></div>
-            </div>
-        </div>
-    </section>
-    <!-- Legacy Photos End -->
-
-    <!-- ? services-area -->
-    <section class="services-area">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8">
-                    <div class="single-services mb-40">
-                        <div class="features-icon">
-                            <img src="assets/img/icon/icon1.svg" alt="">
-                        </div>
-                        <div class="features-caption">
-                            <h3>Location</h3>
-                            <p>2700 22nd St N, Saint Petersburg, FL 33713</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
-                    <div class="single-services mb-40 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
-                        <div class="features-icon">
-                            <img src="assets/img/icon/icon2.svg" alt="">
-                        </div>
-                        <div class="features-caption">
-                            <h3>Phone</h3>
-                            <p>Academy: 727-821-4097</p>
-                            <p>Mobile: 727-455-9198</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
-                    <div class="single-services mb-40 wow fadeInUp" data-wow-duration="2s" data-wow-delay=".4s">
-                        <div class="features-icon">
-                            <img src="assets/img/icon/icon3.svg" alt="">
-                        </div>
-                        <div class="features-caption">
-                            <h3>Email</h3>
-                            <p>amir@amiracademy.com</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
-<footer>
-    <!--? Footer Start-->
-    <div class="footer-area black-bg">
-        <div class="container">
-            <div class="footer-top footer-padding">
-                <!-- Footer Menu -->
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="single-footer-caption mb-50 text-center">
-                            <!-- logo -->
-                            <div class="footer-logo wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
-                                <a href="index.html"><h1 style="color: white; margin: 0;">AMIR ACADEMY</h1></a>
-                            </div>
-                            <!-- Menu -->
-                            <!-- Header Start -->
-                            <div class="header-area main-header2 wow fadeInUp" data-wow-duration="2s" data-wow-delay=".4s">
-                                <div class="main-header main-header2">
-                                    <div class="menu-wrapper menu-wrapper2">
-                                        <!-- Main-menu -->
-                                        <div class="main-menu main-menu2 text-center">
-                                            <nav>
-                                                <ul>
-                                                    <li><a href="index.html">Home</a></li>
-                                                    <li><a href="about.html">About</a></li>
-                                                    <li><a href="events.html">Events</a></li>
-                                                    <li><a href="facility.html">Facility</a></li>
-                                                    <li><a href="pricing.html">Pricing</a></li>
-                                                    <li><a href="gallery.html">Gallery</a></li>
-                                                    <li><a href="kids.html">Kids</a></li>
-                                                    <li><a href="contact.html">Contact</a></li>
-                                                </ul>
-                                            </nav>
+                                    <div class="col-md-3 col-6">
+                                        <div class="event-stat">
+                                            <span class="stat-number">100%</span>
+                                            <span class="stat-label">Sold-Out Record</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Header End -->
-                            <!-- social -->
-                            <div class="mt-30 wow fadeInUp" data-wow-duration="3s" data-wow-delay=".8s">
-                                <img src="assets/img/logo/logo.png" alt="Amir Academy Logo" style="height: 80px;">
+
+                            <p>In 1998, that vision became reality. The first Battle of Tampa Bay event set a new standard by attracting more sponsors than many professional fight cards of its time&mdash;an unprecedented achievement for an amateur showcase. From day one, the mission was clear: give amateur fighters a true professional platform, complete with high-level organization, serious matchmaking, strong sponsorship backing, and a sold-out audience atmosphere.</p>
+
+                            <p>Since then, Battle of Tampa Bay has hosted 29 successful events, consistently drawing packed crowds and maintaining a record of sold-out shows. The event series has welcomed fighters from across the United States and internationally, including competitors from Canada, Italy, Germany, France, England, and other countries, making it a respected name within the global combat sports community.</p>
+
+                            <p>The promotion has provided a launchpad for countless fighters, many of whom have advanced to professional careers in kickboxing and MMA. Beyond competition, Battle of Tampa Bay has played a significant role in strengthening the Tampa Bay combat sports scene by uniting gyms, coaches, sponsors, and fans under one high-quality platform.</p>
+
+                            <p>For more than two decades, the event's continued success has been powered by the dedication of the Ardebily family and their team. Kambiz and Saeed Ardebily have remained instrumental in its development, and for the past 23 years, Fariba Kiani has played a key leadership role in managing and organizing the event alongside Amir Ardebily.</p>
+
+                            <p>With the next event scheduled for May 9, Battle of Tampa Bay continues its commitment to delivering elite-level amateur kickboxing, Muay Thai, and MMA in a professional setting&mdash;providing the Tampa Bay community with world-class combat sports entertainment.</p>
+
+                            <p class="event-closing">Battle of Tampa Bay remains dedicated to excellence, integrity, and showcasing the next generation of champions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Event Story End -->
+
+        <!--? Recent Event Photos -->
+        <section class="black-bg" style="padding: 60px 0;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 text-center mb-50 section-tittle2">
+                        <h2 style="color: white;">Latest Event</h2>
+                        <div class="events-divider"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid" style="padding: 0 30px;">
+                <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
+
+                    <!-- Portraits (posters + vertical shots) -->
+                    <!-- <div class="event-group-label">Portrait Photos</div> -->
+                    <!-- <p class="event-group-sub">Posters and vertical event moments</p> -->
+
+                    <div class="event-gallery-grid portrait">
+                        <!-- event11-15 (portraits) -->
+                        <a class="event-gallery-item" href="assets/img/gallery/event11.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event11.png" alt="Battle of Tampa Bay portrait 11">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event12.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event12.png" alt="Battle of Tampa Bay portrait 12">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event13.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event13.png" alt="Battle of Tampa Bay portrait 13">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event14.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event14.png" alt="Battle of Tampa Bay portrait 14">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event15.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event15.png" alt="Battle of Tampa Bay portrait 15">
+                        </a>
+
+                        <!-- event18 (portrait) -->
+                        <a class="event-gallery-item" href="assets/img/gallery/event18.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event18.png" alt="Battle of Tampa Bay portrait 18">
+                        </a>
+
+                        <!-- event20-21 (portraits) -->
+                        <a class="event-gallery-item" href="assets/img/gallery/event20.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event20.png" alt="Battle of Tampa Bay portrait 20">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event21.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event21.png" alt="Battle of Tampa Bay portrait 21">
+                        </a>
+                    </div>
+
+                    <div class="event-group-sep"></div>
+
+                    <!-- Landscapes -->
+                    <!-- <div class="event-group-label">Landscape Photos</div> -->
+                    <!-- <p class="event-group-sub">Wide shots from the latest event</p> -->
+
+                    <div class="event-gallery-grid landscape">
+                        <a class="event-gallery-item" href="assets/img/gallery/event16.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event16.png" alt="Battle of Tampa Bay landscape 16">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event19.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event19.png" alt="Battle of Tampa Bay landscape 19">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event22.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event22.png" alt="Battle of Tampa Bay landscape 22">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event23.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event23.png" alt="Battle of Tampa Bay landscape 23">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event24.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event24.png" alt="Battle of Tampa Bay landscape 24">
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- Recent Event Photos End -->
+
+        <!--? Legacy Photos -->
+        <section class="black-bg" style="padding: 60px 0 80px;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 text-center mb-50 section-tittle2">
+                        <h2 style="color: white;">Our Legacy</h2>
+                        <div class="events-divider"></div>
+                        <!-- <p style="color: #999; margin-top: 20px; font-size: 1.2rem;">Photos from over two decades of Battle of Tampa Bay events</p> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid" style="padding: 0 30px;">
+                <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
+                    <!-- All legacy photos are landscape -->
+                    <div class="event-gallery-grid landscape">
+                        <a class="event-gallery-item" href="assets/img/gallery/event1.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event1.png" alt="Battle of Tampa Bay legacy 1">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event2.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event2.png" alt="Battle of Tampa Bay legacy 2">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event3.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event3.png" alt="Battle of Tampa Bay legacy 3">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event4.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event4.png" alt="Battle of Tampa Bay legacy 4">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event5.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event5.png" alt="Battle of Tampa Bay legacy 5">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event6.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event6.png" alt="Battle of Tampa Bay legacy 6">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event7.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event7.png" alt="Battle of Tampa Bay legacy 7">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event8.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event8.png" alt="Battle of Tampa Bay legacy 8">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event9.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event9.png" alt="Battle of Tampa Bay legacy 9">
+                        </a>
+                        <a class="event-gallery-item" href="assets/img/gallery/event10.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/event10.png" alt="Battle of Tampa Bay legacy 10">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Legacy Photos End -->
+
+        <!-- ? services-area -->
+        <section class="services-area">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8">
+                        <div class="single-services mb-40">
+                            <div class="features-icon">
+                                <img src="assets/img/icon/icon1.svg" alt="">
+                            </div>
+                            <div class="features-caption">
+                                <h3>Location</h3>
+                                <p>2700 22nd St N, Saint Petersburg, FL 33713</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
+                        <div class="single-services mb-40 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                            <div class="features-icon">
+                                <img src="assets/img/icon/icon2.svg" alt="">
+                            </div>
+                            <div class="features-caption">
+                                <h3>Phone</h3>
+                                <p>Academy: 727-821-4097</p>
+                                <p>Mobile: 727-455-9198</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
+                        <div class="single-services mb-40 wow fadeInUp" data-wow-duration="2s" data-wow-delay=".4s">
+                            <div class="features-icon">
+                                <img src="assets/img/icon/icon3.svg" alt="">
+                            </div>
+                            <div class="features-caption">
+                                <h3>Email</h3>
+                                <p>amir@amiracademy.com</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-          </div>
-      </div>
-      <!-- Footer End-->
-  </footer>
-  <!-- Scroll Up -->
-  <div id="back-top" >
-    <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
-</div>
+        </section>
+    </main>
 
-<!-- JS here -->
+    <footer>
+        <!--? Footer Start-->
+        <div class="footer-area black-bg">
+            <div class="container">
+                <div class="footer-top footer-padding">
+                    <!-- Footer Menu -->
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="single-footer-caption mb-50 text-center">
+                                <!-- logo -->
+                                <div class="footer-logo wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                                    <a href="index.html"><h1 style="color: white; margin: 0;">AMIR ACADEMY</h1></a>
+                                </div>
+                                <!-- Menu -->
+                                <div class="header-area main-header2 wow fadeInUp" data-wow-duration="2s" data-wow-delay=".4s">
+                                    <div class="main-header main-header2">
+                                        <div class="menu-wrapper menu-wrapper2">
+                                            <!-- Main-menu -->
+                                            <div class="main-menu main-menu2 text-center">
+                                                <nav>
+                                                    <ul>
+                                                        <li><a href="index.html">Home</a></li>
+                                                        <li><a href="about.html">About</a></li>
+                                                        <li><a href="events.html">Events</a></li>
+                                                        <li><a href="facility.html">Facility</a></li>
+                                                        <li><a href="pricing.html">Pricing</a></li>
+                                                        <li><a href="gallery.html">Gallery</a></li>
+                                                        <li><a href="kids.html">Kids</a></li>
+                                                        <li><a href="contact.html">Contact</a></li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- social -->
+                                <div class="mt-30 wow fadeInUp" data-wow-duration="3s" data-wow-delay=".8s">
+                                    <img src="assets/img/logo/logo.png" alt="Amir Academy Logo" style="height: 80px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
 
-<script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
-<!-- Jquery, Popper, Bootstrap -->
-<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-<script src="./assets/js/popper.min.js"></script>
-<script src="./assets/js/bootstrap.min.js"></script>
-<!-- Jquery Mobile Menu -->
-<script src="./assets/js/jquery.slicknav.min.js"></script>
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
 
-<!-- Jquery Slick , Owl-Carousel Plugins -->
-<script src="./assets/js/owl.carousel.min.js"></script>
-<script src="./assets/js/slick.min.js"></script>
-<!-- One Page, Animated-HeadLin -->
-<script src="./assets/js/wow.min.js"></script>
-<script src="./assets/js/animated.headline.js"></script>
-<script src="./assets/js/jquery.magnific-popup.js"></script>
+    <!-- JS here -->
+    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="./assets/js/jquery.slicknav.min.js"></script>
 
-<!-- Date Picker -->
-<script src="./assets/js/gijgo.min.js"></script>
-<!-- Nice-select, sticky -->
-<script src="./assets/js/jquery.nice-select.min.js"></script>
-<script src="./assets/js/jquery.sticky.js"></script>
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/slick.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="./assets/js/wow.min.js"></script>
+    <script src="./assets/js/animated.headline.js"></script>
+    <script src="./assets/js/jquery.magnific-popup.js"></script>
 
-<!-- counter , waypoint,Hover Direction -->
-<script src="./assets/js/jquery.counterup.min.js"></script>
-<script src="./assets/js/waypoints.min.js"></script>
-<script src="./assets/js/jquery.countdown.min.js"></script>
-<script src="./assets/js/hover-direction-snake.min.js"></script>
+    <!-- Date Picker -->
+    <script src="./assets/js/gijgo.min.js"></script>
+    <!-- Nice-select, sticky -->
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/jquery.sticky.js"></script>
 
-<!-- contact js -->
-<script src="./assets/js/contact.js"></script>
-<script src="./assets/js/jquery.form.js"></script>
-<script src="./assets/js/jquery.validate.min.js"></script>
-<script src="./assets/js/mail-script.js"></script>
-<script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+    <!-- counter , waypoint,Hover Direction -->
+    <script src="./assets/js/jquery.counterup.min.js"></script>
+    <script src="./assets/js/waypoints.min.js"></script>
+    <script src="./assets/js/jquery.countdown.min.js"></script>
+    <script src="./assets/js/hover-direction-snake.min.js"></script>
 
-<!-- Jquery Plugins, main Jquery -->
-<script src="./assets/js/plugins.js"></script>
-<script src="./assets/js/main.js"></script>
+    <!-- contact js -->
+    <script src="./assets/js/contact.js"></script>
+    <script src="./assets/js/jquery.form.js"></script>
+    <script src="./assets/js/jquery.validate.min.js"></script>
+    <script src="./assets/js/mail-script.js"></script>
+    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
 
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="./assets/js/plugins.js"></script>
+    <script src="./assets/js/main.js"></script>
 </body>
 </html>
