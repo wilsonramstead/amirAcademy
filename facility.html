@@ -23,7 +23,104 @@
     <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Facility page gallery + video tweaks (scoped to facility.html only) -->
+    <style>
+        /* Keep video looking premium */
+        .facility-video video{
+            width: 100%;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 0, 0, 0.3);
+            box-shadow: 0 4px 30px rgba(255, 0, 0, 0.1);
+            background: #000;
+        }
+
+        /* Facility gallery */
+        .facility-gallery-wrap{
+            padding: 70px 0 20px;
+        }
+        .facility-gallery-heading{
+            text-align:center;
+            margin-bottom: 10px;
+        }
+        .facility-gallery-sub{
+            text-align:center;
+            color:#bbb;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+        .facility-gallery-divider{
+            width: 60px;
+            height: 3px;
+            background: #ff0000;
+            margin: 0 auto 35px;
+        }
+
+        .facility-gallery-grid{
+            display: grid;
+            gap: 12px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+        /* Tablet */
+        @media (max-width: 991px){
+            .facility-gallery-grid{
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        /* Mobile */
+        @media (max-width: 575px){
+            .facility-gallery-grid{
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .facility-gallery-item{
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,0,0,0.20);
+            background: rgba(255,255,255,0.02);
+            position: relative;
+            aspect-ratio: 16 / 10; /* all landscape */
+        }
+        .facility-gallery-item img{
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+        .facility-gallery-item:hover img{
+            transform: scale(1.05);
+        }
+
+        /* subtle “View” pill */
+        .facility-gallery-item::after{
+            content: "View";
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            font-family: "Oswald", sans-serif;
+            letter-spacing: 2px;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #fff;
+            background: rgba(255, 0, 0, 0.85);
+            padding: 6px 10px;
+            border-radius: 999px;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity .25s ease, transform .25s ease;
+        }
+        .facility-gallery-item:hover::after{
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (hover: none){
+            .facility-gallery-item::after{ display:none; }
+        }
+    </style>
 </head>
+
 <body class="black-bg">
     <!-- ? Preloader Start -->
     <div id="preloader-active">
@@ -37,6 +134,7 @@
         </div>
     </div>
     <!-- Preloader Start -->
+
     <header>
         <!-- Header Start -->
         <div class="header-area header-transparent">
@@ -45,7 +143,10 @@
                     <div class="menu-wrapper d-flex align-items-center justify-content-between">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html" style="display: flex; align-items: center; gap: 10px;"><img src="assets/img/logo/logo.png" alt="Logo" style="height: 40px;"><h1 style="color: white; margin: 0;">AMIR ACADEMY</h1></a>
+                            <a href="index.html" style="display: flex; align-items: center; gap: 10px;">
+                                <img src="assets/img/logo/logo.png" alt="Logo" style="height: 40px;">
+                                <h1 style="color: white; margin: 0;">AMIR ACADEMY</h1>
+                            </a>
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu f-right d-none d-lg-block">
@@ -64,245 +165,312 @@
                         </div>
                         <!-- Header-btn -->
                         <div class="header-btns d-none d-lg-block f-right">
-                           <a href="contact.html" class="btn">Contact us</a>
-                       </div>
-                       <!-- Mobile Menu -->
-                       <div class="col-12">
-                        <div class="mobile_menu d-block d-lg-none"></div>
+                            <a href="contact.html" class="btn">Contact us</a>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Header End -->
-</header>
-<main>
-    <!--? Hero Start -->
-    <div class="slider-area2">
-        <div class="slider-height2 d-flex align-items-center">
+        <!-- Header End -->
+    </header>
+
+    <main>
+        <!--? Hero Start -->
+        <div class="slider-area2">
+            <div class="slider-height2 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap hero-cap2 pt-70">
+                                <h2>Our Facility</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero End -->
+
+        <!--? Facility Video Section -->
+        <section class="black-bg" style="padding: 80px 0 60px;">
             <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="hero-cap hero-cap2 pt-70">
-                            <h2>Our Facility</h2>
+                <div class="row justify-content-center">
+                    <div class="col-xl-10 col-lg-11">
+                        <div class="facility-video wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
+
+                            <!--
+                              AUDIO NOTE:
+                              Modern browsers usually BLOCK autoplay WITH audio.
+                              So we keep autoplay + muted (so it still plays instantly),
+                              and we ADD controls + unmute hint so users can turn sound on.
+                              This is the “correct” way to ensure audio is available.
+                            -->
+                            <video autoplay muted loop playsinline controls>
+                                <source src="assets/img/gallery/facility.mov" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+
+                            <p style="color:#bbb; font-size: 0.95rem; margin: 14px 0 0; text-align:center;">
+                                Tap the speaker icon in the video controls to enable audio.
+                            </p>
+
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Hero End -->
+        </section>
+        <!-- Facility Video End -->
 
-    <!--? Facility Video Section -->
-    <section class="black-bg" style="padding: 80px 0 60px;">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-10 col-lg-11">
-                    <div class="facility-video wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
-                        <video autoplay muted loop playsinline style="width: 100%; border-radius: 12px; border: 2px solid rgba(255, 0, 0, 0.3); box-shadow: 0 4px 30px rgba(255, 0, 0, 0.1);">
-                            <source src="assets/img/gallery/facility.mov" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Facility Video End -->
-
-    <!--? Facility Description -->
-    <section class="black-bg" style="padding: 20px 0 80px;">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-10 col-lg-11">
-                    <div class="facility-description wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
-                        <h3 style="color: #ff0000; font-size: 1.4rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px; text-align: center;">World-Class Training Under One Roof</h3>
-                        <div style="color: #ddd; font-size: 1.25rem; line-height: 1.85;">
-                            <p style="color: #ddd; margin-bottom: 22px;">
-                                Welcome to Amir Academy of Martial Arts — a premier, high-end MMA and weight training facility built from the ground up for serious athletes and everyday warriors alike. Located in the heart of St. Petersburg, Florida, our state-of-the-art gym is more than just a place to work out — it's a combat sports destination designed to push your limits and transform your potential.
-                            </p>
-                            <p style="color: #ddd; margin-bottom: 22px;">
-                                Step inside and you'll find a full-size professional boxing ring at the center of it all, surrounded by over 15 heavy punching bags ready for striking drills, conditioning rounds, and technical work. Our extensive collection of sparring gear, focus mitts, Thai pads, and training equipment ensures that every fighter — from first-timers to seasoned competitors — has everything they need to sharpen their skills.
-                            </p>
-                            <p style="color: #ddd; margin-bottom: 22px;">
-                                The facility features three distinct training rooms, each purpose-built for different disciplines. Whether you're rolling on our competition-grade mats for Jiu-Jitsu, perfecting your striking combinations in the boxing area, or grinding through a high-intensity MMA session, every space is optimized for performance, safety, and focus.
-                            </p>
-                            <p style="color: #ddd; margin-bottom: 22px;">
-                                Beyond combat sports, our fully equipped weight training and cardio section boasts a comprehensive range of free weights, machines, resistance equipment, and cardio machines — everything you need to build strength, improve endurance, and complement your martial arts training with a complete fitness regimen.
-                            </p>
-                            <p style="color: #ddd; margin-bottom: 22px;">
-                                Every detail of Amir Academy has been carefully curated to create an environment where champions are made. From the moment you walk through our doors, you'll feel the energy of a gym that has produced elite fighters and hosted legendary events like the Battle of Tampa Bay for over 27 years. This isn't your average gym — this is where dedication meets world-class resources, and where your journey to greatness begins.
-                            </p>
-                        </div>
-
-                        <!-- Facility Highlights -->
-                        <div style="margin: 40px 0; padding: 35px 20px; border: 1px solid rgba(255, 0, 0, 0.3); border-radius: 12px; background: rgba(255, 0, 0, 0.03);">
-                            <div class="row text-center">
-                                <div class="col-md-3 col-6 mb-3 mb-md-0">
-                                    <span style="display: block; color: #ff0000; font-size: 2.8rem; font-weight: 800;">1</span>
-                                    <span style="display: block; color: #999; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;">Boxing Ring</span>
-                                </div>
-                                <div class="col-md-3 col-6 mb-3 mb-md-0">
-                                    <span style="display: block; color: #ff0000; font-size: 2.8rem; font-weight: 800;">15+</span>
-                                    <span style="display: block; color: #999; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;">Heavy Bags</span>
-                                </div>
-                                <div class="col-md-3 col-6">
-                                    <span style="display: block; color: #ff0000; font-size: 2.8rem; font-weight: 800;">3</span>
-                                    <span style="display: block; color: #999; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;">Training Rooms</span>
-                                </div>
-                                <div class="col-md-3 col-6">
-                                    <span style="display: block; color: #ff0000; font-size: 2.8rem; font-weight: 800;">27+</span>
-                                    <span style="display: block; color: #999; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;">Years Strong</span>
-                                </div>
+        <!--? Facility Description -->
+        <section class="black-bg" style="padding: 20px 0 50px;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-10 col-lg-11">
+                        <div class="facility-description wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                            <h3 style="color: #ff0000; font-size: 1.4rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px; text-align: center;">World-Class Training Under One Roof</h3>
+                            <div style="color: #ddd; font-size: 1.25rem; line-height: 1.85;">
+                                <p style="color: #ddd; margin-bottom: 22px;">
+                                    Welcome to Amir Academy of Martial Arts — a premier, high-end MMA and weight training facility built from the ground up for serious athletes and everyday warriors alike. Located in the heart of St. Petersburg, Florida, our state-of-the-art gym is more than just a place to work out — it's a combat sports destination designed to push your limits and transform your potential.
+                                </p>
+                                <p style="color: #ddd; margin-bottom: 22px;">
+                                    Step inside and you'll find a full-size professional boxing ring at the center of it all, surrounded by over 15 heavy punching bags ready for striking drills, conditioning rounds, and technical work. Our extensive collection of sparring gear, focus mitts, Thai pads, and training equipment ensures that every fighter — from first-timers to seasoned competitors — has everything they need to sharpen their skills.
+                                </p>
+                                <p style="color: #ddd; margin-bottom: 22px;">
+                                    The facility features three distinct training rooms, each purpose-built for different disciplines. Whether you're rolling on our competition-grade mats for Jiu-Jitsu, perfecting your striking combinations in the boxing area, or grinding through a high-intensity MMA session, every space is optimized for performance, safety, and focus.
+                                </p>
+                                <p style="color: #ddd; margin-bottom: 22px;">
+                                    Beyond combat sports, our fully equipped weight training and cardio section boasts a comprehensive range of free weights, machines, resistance equipment, and cardio machines — everything you need to build strength, improve endurance, and complement your martial arts training with a complete fitness regimen.
+                                </p>
+                                <p style="color: #ddd; margin-bottom: 22px;">
+                                    Every detail of Amir Academy has been carefully curated to create an environment where champions are made. From the moment you walk through our doors, you'll feel the energy of a gym that has produced elite fighters and hosted legendary events like the Battle of Tampa Bay for over 27 years. This isn't your average gym — this is where dedication meets world-class resources, and where your journey to greatness begins.
+                                </p>
                             </div>
-                        </div>
 
-                        <p style="color: white; font-size: 1.35rem; font-weight: 600; font-style: italic; text-align: center; margin-top: 35px; padding-top: 30px; border-top: 1px solid rgba(255, 0, 0, 0.2);">
-                            Come see for yourself why Amir Academy is the top combat sports facility in Tampa Bay.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Facility Description End -->
-
-    <!-- ? services-area -->
-    <section class="services-area">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8">
-                    <div class="single-services mb-40">
-                        <div class="features-icon">
-                            <img src="assets/img/icon/icon1.svg" alt="">
-                        </div>
-                        <div class="features-caption">
-                            <h3>Location</h3>
-                            <p>2700 22nd St N, Saint Petersburg, FL 33713</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
-                    <div class="single-services mb-40 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
-                        <div class="features-icon">
-                            <img src="assets/img/icon/icon2.svg" alt="">
-                        </div>
-                        <div class="features-caption">
-                            <h3>Phone</h3>
-                            <p>Academy: 727-821-4097</p>
-                            <p>Mobile: 727-455-9198</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
-                    <div class="single-services mb-40 wow fadeInUp" data-wow-duration="2s" data-wow-delay=".4s">
-                        <div class="features-icon">
-                            <img src="assets/img/icon/icon3.svg" alt="">
-                        </div>
-                        <div class="features-caption">
-                            <h3>Email</h3>
-                            <p>amir@amiracademy.com</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
-<footer>
-    <!--? Footer Start-->
-    <div class="footer-area black-bg">
-        <div class="container">
-            <div class="footer-top footer-padding">
-                <!-- Footer Menu -->
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="single-footer-caption mb-50 text-center">
-                            <!-- logo -->
-                            <div class="footer-logo wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
-                                <a href="index.html"><h1 style="color: white; margin: 0;">AMIR ACADEMY</h1></a>
-                            </div>
-                            <!-- Menu -->
-                            <!-- Header Start -->
-                            <div class="header-area main-header2 wow fadeInUp" data-wow-duration="2s" data-wow-delay=".4s">
-                                <div class="main-header main-header2">
-                                    <div class="menu-wrapper menu-wrapper2">
-                                        <!-- Main-menu -->
-                                        <div class="main-menu main-menu2 text-center">
-                                            <nav>
-                                                <ul>
-                                                    <li><a href="index.html">Home</a></li>
-                                                    <li><a href="about.html">About</a></li>
-                                                    <li><a href="kids.html">Kids MMA</a></li>
-                                                    <li><a href="events.html">Events</a></li>
-                                                    <li><a href="facility.html">Facility</a></li>
-                                                    <li><a href="pricing.html">Pricing</a></li>
-                                                    <!-- <li><a href="gallery.html">Gallery</a></li> -->
-                                                    <li><a href="contact.html">Contact</a></li>
-                                                </ul>
-                                            </nav>
-                                        </div>
+                            <!-- Facility Highlights -->
+                            <div style="margin: 40px 0; padding: 35px 20px; border: 1px solid rgba(255, 0, 0, 0.3); border-radius: 12px; background: rgba(255, 0, 0, 0.03);">
+                                <div class="row text-center">
+                                    <div class="col-md-3 col-6 mb-3 mb-md-0">
+                                        <span style="display: block; color: #ff0000; font-size: 2.8rem; font-weight: 800;">1</span>
+                                        <span style="display: block; color: #999; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;">Boxing Ring</span>
+                                    </div>
+                                    <div class="col-md-3 col-6 mb-3 mb-md-0">
+                                        <span style="display: block; color: #ff0000; font-size: 2.8rem; font-weight: 800;">15+</span>
+                                        <span style="display: block; color: #999; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;">Heavy Bags</span>
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <span style="display: block; color: #ff0000; font-size: 2.8rem; font-weight: 800;">3</span>
+                                        <span style="display: block; color: #999; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;">Training Rooms</span>
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <span style="display: block; color: #ff0000; font-size: 2.8rem; font-weight: 800;">27+</span>
+                                        <span style="display: block; color: #999; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;">Years Strong</span>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Header End -->
-                            <!-- social -->
-                            <div class="mt-30 wow fadeInUp" data-wow-duration="3s" data-wow-delay=".8s">
-                                <img src="assets/img/logo/logo.png" alt="Amir Academy Logo" style="height: 80px;">
+
+                            <p style="color: white; font-size: 1.35rem; font-weight: 600; font-style: italic; text-align: center; margin-top: 35px; padding-top: 30px; border-top: 1px solid rgba(255, 0, 0, 0.2);">
+                                Come see for yourself why Amir Academy is the top combat sports facility in Tampa Bay.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Facility Description End -->
+
+        <!--? Facility Gallery (bottom) -->
+        <section class="black-bg facility-gallery-wrap">
+            <div class="container">
+                <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
+                    <div class="facility-gallery-heading">
+                        <h3 style="color:#ff0000; text-transform:uppercase; letter-spacing:3px; font-weight:700; margin-bottom: 12px;">
+                            Facility Gallery
+                        </h3>
+                        <div class="facility-gallery-divider"></div>
+                    </div>
+                    <p class="facility-gallery-sub">Tap any photo to view full size.</p>
+
+                    <div class="facility-gallery-grid">
+                        <!-- facility2.png intentionally excluded (corrupted) -->
+                        <a class="facility-gallery-item" href="assets/img/gallery/facility1.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/facility1.png" alt="Amir Academy facility photo 1">
+                        </a>
+
+                        <a class="facility-gallery-item" href="assets/img/gallery/facility3.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/facility3.png" alt="Amir Academy facility photo 3">
+                        </a>
+
+                        <a class="facility-gallery-item" href="assets/img/gallery/facility4.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/facility4.png" alt="Amir Academy facility photo 4">
+                        </a>
+
+                        <a class="facility-gallery-item" href="assets/img/gallery/facility5.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/facility5.png" alt="Amir Academy facility photo 5">
+                        </a>
+
+                        <a class="facility-gallery-item" href="assets/img/gallery/facility6.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/facility6.png" alt="Amir Academy facility photo 6">
+                        </a>
+
+                        <a class="facility-gallery-item" href="assets/img/gallery/facility2.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/facility2.png" alt="Amir Academy facility photo 2">
+                        </a>
+
+                        <a class="facility-gallery-item" href="assets/img/gallery/facility7.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/facility7.png" alt="Amir Academy facility photo 7">
+                        </a>
+
+                        <a class="facility-gallery-item" href="assets/img/gallery/facility8.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/facility8.png" alt="Amir Academy facility photo 8">
+                        </a>
+
+                        <a class="facility-gallery-item" href="assets/img/gallery/facility9.png" target="_blank" rel="noopener">
+                            <img src="assets/img/gallery/facility9.png" alt="Amir Academy facility photo 9">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Facility Gallery End -->
+
+        <!-- ? services-area -->
+        <section class="services-area">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8">
+                        <div class="single-services mb-40">
+                            <div class="features-icon">
+                                <img src="assets/img/icon/icon1.svg" alt="">
+                            </div>
+                            <div class="features-caption">
+                                <h3>Location</h3>
+                                <p>2700 22nd St N, Saint Petersburg, FL 33713</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
+                        <div class="single-services mb-40 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                            <div class="features-icon">
+                                <img src="assets/img/icon/icon2.svg" alt="">
+                            </div>
+                            <div class="features-caption">
+                                <h3>Phone</h3>
+                                <p>Academy: 727-821-4097</p>
+                                <p>Mobile: 727-455-9198</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
+                        <div class="single-services mb-40 wow fadeInUp" data-wow-duration="2s" data-wow-delay=".4s">
+                            <div class="features-icon">
+                                <img src="assets/img/icon/icon3.svg" alt="">
+                            </div>
+                            <div class="features-caption">
+                                <h3>Email</h3>
+                                <p>amir@amiracademy.com</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-          </div>
-      </div>
-      <!-- Footer End-->
-  </footer>
-  <!-- Scroll Up -->
-  <div id="back-top" >
-    <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
-</div>
+        </section>
+    </main>
 
-<!-- JS here -->
+    <footer>
+        <!--? Footer Start-->
+        <div class="footer-area black-bg">
+            <div class="container">
+                <div class="footer-top footer-padding">
+                    <!-- Footer Menu -->
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="single-footer-caption mb-50 text-center">
+                                <!-- logo -->
+                                <div class="footer-logo wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                                    <a href="index.html"><h1 style="color: white; margin: 0;">AMIR ACADEMY</h1></a>
+                                </div>
 
-<script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
-<!-- Jquery, Popper, Bootstrap -->
-<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-<script src="./assets/js/popper.min.js"></script>
-<script src="./assets/js/bootstrap.min.js"></script>
-<!-- Jquery Mobile Menu -->
-<script src="./assets/js/jquery.slicknav.min.js"></script>
+                                <!-- Menu -->
+                                <div class="header-area main-header2 wow fadeInUp" data-wow-duration="2s" data-wow-delay=".4s">
+                                    <div class="main-header main-header2">
+                                        <div class="menu-wrapper menu-wrapper2">
+                                            <div class="main-menu main-menu2 text-center">
+                                                <nav>
+                                                    <ul>
+                                                        <li><a href="index.html">Home</a></li>
+                                                        <li><a href="about.html">About</a></li>
+                                                        <li><a href="kids.html">Kids MMA</a></li>
+                                                        <li><a href="events.html">Events</a></li>
+                                                        <li><a href="facility.html">Facility</a></li>
+                                                        <li><a href="pricing.html">Pricing</a></li>
+                                                        <!-- <li><a href="gallery.html">Gallery</a></li> -->
+                                                        <li><a href="contact.html">Contact</a></li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- social -->
+                                <div class="mt-30 wow fadeInUp" data-wow-duration="3s" data-wow-delay=".8s">
+                                    <img src="assets/img/logo/logo.png" alt="Amir Academy Logo" style="height: 80px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
 
-<!-- Jquery Slick , Owl-Carousel Plugins -->
-<script src="./assets/js/owl.carousel.min.js"></script>
-<script src="./assets/js/slick.min.js"></script>
-<!-- One Page, Animated-HeadLin -->
-<script src="./assets/js/wow.min.js"></script>
-<script src="./assets/js/animated.headline.js"></script>
-<script src="./assets/js/jquery.magnific-popup.js"></script>
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    </div>
 
-<!-- Date Picker -->
-<script src="./assets/js/gijgo.min.js"></script>
-<!-- Nice-select, sticky -->
-<script src="./assets/js/jquery.nice-select.min.js"></script>
-<script src="./assets/js/jquery.sticky.js"></script>
+    <!-- JS here -->
+    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="./assets/js/jquery.slicknav.min.js"></script>
 
-<!-- counter , waypoint,Hover Direction -->
-<script src="./assets/js/jquery.counterup.min.js"></script>
-<script src="./assets/js/waypoints.min.js"></script>
-<script src="./assets/js/jquery.countdown.min.js"></script>
-<script src="./assets/js/hover-direction-snake.min.js"></script>
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/slick.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="./assets/js/wow.min.js"></script>
+    <script src="./assets/js/animated.headline.js"></script>
+    <script src="./assets/js/jquery.magnific-popup.js"></script>
 
-<!-- contact js -->
-<script src="./assets/js/contact.js"></script>
-<script src="./assets/js/jquery.form.js"></script>
-<script src="./assets/js/jquery.validate.min.js"></script>
-<script src="./assets/js/mail-script.js"></script>
-<script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+    <!-- Date Picker -->
+    <script src="./assets/js/gijgo.min.js"></script>
+    <!-- Nice-select, sticky -->
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/jquery.sticky.js"></script>
 
-<!-- Jquery Plugins, main Jquery -->
-<script src="./assets/js/plugins.js"></script>
-<script src="./assets/js/main.js"></script>
+    <!-- counter , waypoint,Hover Direction -->
+    <script src="./assets/js/jquery.counterup.min.js"></script>
+    <script src="./assets/js/waypoints.min.js"></script>
+    <script src="./assets/js/jquery.countdown.min.js"></script>
+    <script src="./assets/js/hover-direction-snake.min.js"></script>
 
+    <!-- contact js -->
+    <script src="./assets/js/contact.js"></script>
+    <script src="./assets/js/jquery.form.js"></script>
+    <script src="./assets/js/jquery.validate.min.js"></script>
+    <script src="./assets/js/mail-script.js"></script>
+    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="./assets/js/plugins.js"></script>
+    <script src="./assets/js/main.js"></script>
 </body>
 </html>
