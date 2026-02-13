@@ -226,12 +226,168 @@
         background-color: #000 !important;
         }
         /* Mobile: push the hero photo DOWN + RIGHT so text doesn't overlap faces */
-        @media (max-width: 575px){
-            .slider-area{
-                background-size: 95% auto, 100% 100% !important;
-                background-position: bottom 50px right -60px, center center !important;
-            }
-        }
+/* =========================
+   HERO: MOBILE (FULL SCREEN + FORCE SLIDE OPACITY)
+   ========================= */
+@media (max-width: 575px){
+
+  /* Full screen hero on mobile */
+  .slider-area,
+  .single-slider.slider-height{
+    min-height: 100svh !important;
+    height: 100svh !important;
+  }
+
+  /* IMPORTANT: the slider library is fading the whole slide (parent opacity).
+     If parent is faded, children can NEVER look solid. Force everything to 1. */
+  .slider-area .single-slider,
+  .slider-area .slider-active,
+  .slider-area .owl-item,
+  .slider-area .owl-stage,
+  .slider-area .owl-stage-outer,
+  .slider-area .slick-slide,
+  .slider-area .slick-track,
+  .slider-area .slick-list{
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+  /* Base hero container */
+  .slider-area{
+    background: #000 !important;
+    position: relative !important;
+    overflow: hidden !important;
+
+    /* kill any desktop background for mobile */
+    background-image: none !important;
+  }
+
+  /* Photo layer */
+  .slider-area::before{
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background-image: url(assets/img/gallery/team5.png) !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: 85% 55% !important;
+
+    filter: grayscale(100%) contrast(125%) brightness(0.80) !important;
+    transform: scale(1.04) !important;
+    z-index: 0 !important;
+  }
+
+  /* Dark overlay */
+  .slider-area::after{
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(
+      135deg,
+      rgba(255,0,0,0.22) 0%,
+      rgba(0,0,0,0.78) 55%,
+      rgba(0,0,0,0.92) 100%
+    ) !important;
+    z-index: 1 !important;
+  }
+
+  /* Content above overlays */
+  .slider-area .single-slider,
+  .slider-area .container,
+  .slider-area .row,
+  .slider-area [class*="col-"],
+  .slider-area .hero__caption{
+    position: relative !important;
+    z-index: 2 !important;
+  }
+
+  /* Make caption container tight (no big box) */
+  .slider-area .hero__caption{
+    display: inline-block !important;
+    width: fit-content !important;
+    max-width: 78vw !important;     /* ✅ keeps it from covering the right side/face */
+    padding: 0 !important;
+    margin: 0 !important;
+
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+
+  /* NUCLEAR: remove any animation/fade styles applied by template */
+  .slider-area .hero__caption,
+  .slider-area .hero__caption *{
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+    -webkit-animation: none !important;
+    transform: none !important;
+    filter: none !important;
+
+    /* prevent weird blending/fade effects */
+    mix-blend-mode: normal !important;
+  }
+
+  /* WELCOME TO pill stays small */
+  .slider-area .hero__caption span{
+    display: inline-block !important;
+    padding: 6px 10px !important;
+    border-radius: 999px !important;
+
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    -webkit-text-stroke: 0 !important;
+    text-shadow: 0 10px 28px rgba(0,0,0,0.98) !important;
+
+    background: rgba(251, 251, 251, 0.057) !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+
+    -webkit-backdrop-filter: blur(6px) !important;
+    backdrop-filter: blur(6px) !important;
+  }
+
+  /* H1 gets a tight strip behind it (not a giant rectangle) */
+  .slider-area .hero__caption h1{
+    display: inline-block !important;
+    margin-top: 10px !important;
+    padding: 10px 14px 12px !important;
+    border-radius: 14px !important;
+
+    background: rgba(251, 251, 251, 0.057) !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+
+    -webkit-backdrop-filter: blur(8px) !important;
+    backdrop-filter: blur(8px) !important;
+  }
+
+  /* underline now sits inside the strip nicely */
+  .slider-area .hero__caption h1::after{
+    width: 64px !important;
+    margin-top: 10px !important;
+  }
+
+
+  /* Red underline accent instead of outlined red text */
+  .slider-area .hero__caption h1::after{
+    content: "" !important;
+    display: block !important;
+    width: 78px !important;
+    height: 4px !important;
+    margin-top: 12px !important;
+    border-radius: 999px !important;
+    background: #ff0000 !important;
+    box-shadow: 0 8px 18px rgba(255,0,0,0.25) !important;
+  }
+
+}
+
     </style>
 </head>
 
