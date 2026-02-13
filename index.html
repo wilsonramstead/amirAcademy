@@ -208,6 +208,23 @@
             .aa-teaser-sub{ font-size: 1.12rem; }
             .aa-btn-link{ font-size: 1.10rem; }
         }
+        /* HERO: keep photo + add clean diagonal glow (INLINE CSS needs different path) */
+        .slider-area{
+        background-image:
+            url(assets/img/hero/h1_hero.png),
+            linear-gradient(
+            135deg,
+            rgba(255,0,0,0.40) 0%,
+            rgba(255,0,0,0.10) 26%,
+            rgba(0,0,0,0.00) 49%,
+            rgba(0,0,0,0.00) 100%
+            ) !important;
+
+        background-repeat: no-repeat, no-repeat !important;
+        background-position: bottom right, center center !important;
+        background-size: 75% auto, 100% 100% !important;
+        background-color: #000 !important;
+        }
     </style>
 </head>
 
