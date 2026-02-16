@@ -8473,4 +8473,45 @@ del {
 
 }
 
+/* ==========================================================
+   Ambient dark background — fixed glow that stays in viewport
+   ========================================================== */
+
+body.black-bg{
+    background-color: #050505;
+    background-image:
+        /* Large red glow — top-left */
+        radial-gradient(
+            ellipse 55% 50% at 15% 20%,
+            rgba(255, 0, 0, 0.18) 0%,
+            transparent 70%
+        ),
+        /* Warm accent — right side, mid-page */
+        radial-gradient(
+            ellipse 45% 40% at 85% 55%,
+            rgba(200, 20, 0, 0.14) 0%,
+            transparent 70%
+        ),
+        /* Soft red bloom — bottom-center */
+        radial-gradient(
+            ellipse 60% 45% at 50% 90%,
+            rgba(255, 0, 0, 0.12) 0%,
+            transparent 70%
+        ),
+        /* Deep subtle fill — center */
+        radial-gradient(
+            ellipse 80% 60% at 50% 50%,
+            rgba(140, 0, 0, 0.08) 0%,
+            transparent 70%
+        );
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+/* Make child .black-bg elements transparent so the body gradient shows through */
+body.black-bg .black-bg{
+    background: transparent !important;
+}
+
 /*# sourceMappingURL=style.css.map */
