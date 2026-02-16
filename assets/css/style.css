@@ -8135,4 +8135,342 @@ del {
   }
 }
 
+/* ==========================================================
+   Homepage additions (moved from index.html inline <style>)
+   ========================================================== */
+
+/* Small "section divider" used in new sections */
+.aa-divider{
+    width: 60px;
+    height: 3px;
+    background: #ff0000;
+    margin: 15px auto 0;
+}
+
+/* Hero CTA row */
+.hero-cta-row{
+    margin-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.hero-cta-row a{
+    display: inline-block;
+    padding: 14px 26px;
+    border-radius: 6px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: "Oswald", sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+}
+.hero-cta-primary{
+    background: #ff0000;
+    color: #fff;
+    border: 2px solid #ff0000;
+}
+.hero-cta-primary:hover{ color:#fff; opacity:.92; }
+.hero-cta-secondary{
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.35);
+}
+.hero-cta-secondary:hover{
+    color:#fff;
+    border-color: rgba(255,0,0,0.6);
+}
+
+/* Facility teaser video */
+.aa-video video{
+    width: 100%;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 0, 0, 0.3);
+    box-shadow: 0 4px 30px rgba(255, 0, 0, 0.1);
+    background: #000;
+}
+
+/* Teaser cards (Facility/Kids/Events) */
+.aa-teaser-card{
+    border: 1px solid rgba(255,0,0,0.22);
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.02);
+    height: 100%;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+}
+
+.aa-teaser-card img{
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    flex: 0 0 auto;
+}
+@media (max-width: 575px){
+    .aa-teaser-card img{ height: 220px; }
+}
+
+.aa-teaser-card-body{
+    padding: 26px 24px 28px;
+    text-align: center;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.aa-teaser-title{
+    color: #fff;
+    font-size: 1.85rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+    letter-spacing: 0.4px;
+    line-height: 1.15;
+}
+
+.aa-teaser-sub{
+    color: #cfcfcf;
+    font-size: 1.22rem;
+    line-height: 1.8;
+    margin: 0 0 18px 0;
+}
+
+.aa-mini-pills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top: 16px;
+    justify-content: center;
+}
+
+.aa-pill{
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color:#fff;
+    background: rgba(255,0,0,0.80);
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-family: "Oswald", sans-serif;
+}
+
+.aa-btn-link{
+    display: inline-block;
+    color: #ffffff;
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 1.38rem;
+    letter-spacing: 0.3px;
+    margin-top: auto;
+    padding-top: 14px;
+}
+.aa-btn-link:hover{
+    color:#ff0000;
+    opacity: .9;
+}
+
+/* Stats row */
+.aa-stats{
+    margin-top: 18px;
+    padding: 20px 16px;
+    border: 1px solid rgba(255,0,0,0.28);
+    border-radius: 12px;
+    background: rgba(255,0,0,0.04);
+}
+
+.aa-stat-num{
+    display:block;
+    color:#ff0000;
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1.05;
+}
+
+.aa-stat-label{
+    display:block;
+    color:#b0b0b0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 13px;
+    margin-top: 6px;
+    font-family: "Oswald", sans-serif;
+}
+
+/* Explore section subtitle */
+.aa-explore-subtitle{
+    color:#cfcfcf;
+    margin-top:18px;
+    font-size: 1.5rem;
+    line-height: 1.7;
+}
+@media (max-width: 991px){
+    .aa-explore-subtitle{ font-size: 1.32rem; }
+}
+@media (max-width: 575px){
+    .aa-explore-subtitle{ font-size: 1.18rem; }
+    .aa-teaser-title{ font-size: 1.65rem; }
+    .aa-teaser-sub{ font-size: 1.12rem; }
+    .aa-btn-link{ font-size: 1.10rem; }
+}
+
+/* HERO: photo + diagonal glow */
+.slider-area{
+    background-image:
+        url(../img/hero/h1_hero.png),
+        linear-gradient(
+        135deg,
+        rgba(255,0,0,0.40) 0%,
+        rgba(255,0,0,0.10) 26%,
+        rgba(0,0,0,0.00) 49%,
+        rgba(0,0,0,0.00) 100%
+        ) !important;
+    background-repeat: no-repeat, no-repeat !important;
+    background-position: bottom right, center center !important;
+    background-size: 75% auto, 100% 100% !important;
+    background-color: #000 !important;
+}
+
+/* =========================
+   HERO: MOBILE (FULL SCREEN + FORCE SLIDE OPACITY)
+   ========================= */
+@media (max-width: 575px){
+
+  /* Full screen hero on mobile */
+  .slider-area,
+  .single-slider.slider-height{
+    min-height: 100svh !important;
+    height: 100svh !important;
+  }
+
+  /* Force slider elements visible */
+  .slider-area .single-slider,
+  .slider-area .slider-active,
+  .slider-area .owl-item,
+  .slider-area .owl-stage,
+  .slider-area .owl-stage-outer,
+  .slider-area .slick-slide,
+  .slider-area .slick-track,
+  .slider-area .slick-list{
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+  /* Base hero container */
+  .slider-area{
+    background: #000 !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background-image: none !important;
+  }
+
+  /* Photo layer */
+  .slider-area::before{
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background-image: url(../img/gallery/team5.png) !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: 85% 55% !important;
+    filter: grayscale(35%) contrast(125%) brightness(1) !important;
+    transform: scale(1.04) !important;
+    z-index: 0 !important;
+  }
+
+  /* Dark overlay */
+  .slider-area::after{
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(
+      135deg,
+      rgba(255,0,0,0.12) 0%,
+      rgba(0,0,0,0.50) 55%,
+      rgba(0,0,0,0.65) 100%
+    ) !important;
+    z-index: 1 !important;
+  }
+
+  /* Content above overlays */
+  .slider-area .single-slider,
+  .slider-area .container,
+  .slider-area .row,
+  .slider-area [class*="col-"],
+  .slider-area .hero__caption{
+    position: relative !important;
+    z-index: 2 !important;
+  }
+
+  /* Make caption container tight */
+  .slider-area .hero__caption{
+    display: inline-block !important;
+    width: fit-content !important;
+    max-width: 78vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+  /* Remove animation/fade styles from template */
+  .slider-area .hero__caption,
+  .slider-area .hero__caption *{
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+    -webkit-animation: none !important;
+    transform: none !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
+  }
+
+  /* WELCOME TO pill */
+  .slider-area .hero__caption span{
+    display: inline-block !important;
+    padding: 6px 10px !important;
+    border-radius: 14px !important;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    -webkit-text-stroke: 0 !important;
+    text-shadow: 0 10px 28px rgba(0,0,0,0.98) !important;
+    background: rgba(251, 251, 251, 0.057) !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+    backdrop-filter: blur(6px) !important;
+  }
+
+  /* H1 glass strip */
+  .slider-area .hero__caption h1{
+    display: inline-block !important;
+    margin-top: 10px !important;
+    padding: 10px 14px 12px !important;
+    border-radius: 14px !important;
+    background: rgba(251, 251, 251, 0.057) !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    backdrop-filter: blur(8px) !important;
+  }
+
+  /* Red underline accent */
+  .slider-area .hero__caption h1::after{
+    content: "" !important;
+    display: block !important;
+    width: 78px !important;
+    height: 4px !important;
+    margin-top: 12px !important;
+    border-radius: 999px !important;
+    background: #ff0000 !important;
+    box-shadow: 0 8px 18px rgba(255,0,0,0.25) !important;
+  }
+
+}
+
 /*# sourceMappingURL=style.css.map */
