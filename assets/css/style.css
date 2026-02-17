@@ -8208,6 +8208,80 @@ del {
    ========================================================== */
 
 /* ==========================================================
+   Floating Audio Player
+   ========================================================== */
+.aa-audio-btn {
+    position: fixed;
+    bottom: 80px;
+    right: 31px;
+    z-index: 999;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 0, 0, 0.5);
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.15);
+}
+
+.aa-audio-btn:hover {
+    border-color: #ff0000;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+    transform: scale(1.08);
+}
+
+.aa-audio-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #ff3333;
+    transition: fill 0.3s;
+}
+
+.aa-audio-btn:hover svg {
+    fill: #ff0000;
+}
+
+/* Eye-catching bounce when music hasn't started yet */
+.aa-audio-btn.needs-attention {
+    animation: aa-attract 2s ease-in-out infinite;
+}
+
+@keyframes aa-attract {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 0, 0, 0.15); }
+    25% { transform: scale(1.15); box-shadow: 0 0 30px rgba(255, 0, 0, 0.45); }
+    50% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 0, 0, 0.15); }
+    75% { transform: scale(1.1); box-shadow: 0 0 25px rgba(255, 0, 0, 0.35); }
+}
+
+.aa-audio-btn.is-playing {
+    border-color: #ff0000;
+    animation: aa-pulse 2s ease-in-out infinite;
+}
+
+@keyframes aa-pulse {
+    0%, 100% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.15); }
+    50% { box-shadow: 0 0 25px rgba(255, 0, 0, 0.35); }
+}
+
+@media (max-width: 575px) {
+    .aa-audio-btn {
+        width: 44px;
+        height: 44px;
+        bottom: 74px;
+        right: 16px;
+    }
+    .aa-audio-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* ==========================================================
    Schedule Section
    ========================================================== */
 .aa-schedule-section {
