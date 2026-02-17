@@ -8207,6 +8207,143 @@ del {
    Homepage additions (moved from index.html inline <style>)
    ========================================================== */
 
+/* ==========================================================
+   Schedule Section
+   ========================================================== */
+.aa-schedule-section {
+    padding: 80px 0;
+}
+
+.aa-schedule-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.aa-schedule-card {
+    flex: 0 1 calc(33.333% - 16px);
+    min-width: 280px;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (max-width: 991px) {
+    .aa-schedule-card {
+        flex: 0 1 calc(50% - 12px);
+        min-width: 260px;
+    }
+}
+
+@media (max-width: 575px) {
+    .aa-schedule-card {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+    .aa-schedule-grid {
+        gap: 18px;
+    }
+    .aa-schedule-section {
+        padding: 50px 0;
+    }
+}
+
+.aa-schedule-card:hover {
+    border-color: rgba(255, 0, 0, 0.4);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.08);
+}
+
+.aa-schedule-day {
+    background: linear-gradient(135deg, #1a0000, #220000);
+    padding: 16px 22px;
+    font-family: "Oswald", sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ff3333;
+    border-bottom: 2px solid rgba(255, 0, 0, 0.25);
+}
+
+.aa-schedule-items {
+    padding: 20px 22px;
+}
+
+.aa-schedule-item {
+    padding: 14px 0;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.aa-schedule-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.aa-schedule-item:first-child {
+    padding-top: 0;
+}
+
+.aa-schedule-class {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.aa-schedule-age {
+    font-size: 1.1rem;
+    color: #888;
+    margin-bottom: 4px;
+}
+
+.aa-schedule-time {
+    font-size: 1.15rem;
+    color: #ff4444;
+    font-weight: 600;
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 1px;
+}
+
+/* Morning classes label */
+.aa-schedule-label {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-family: "Oswald", sans-serif;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #666;
+}
+
+.aa-schedule-label span {
+    display: inline-block;
+    padding: 0 20px;
+    position: relative;
+}
+
+.aa-schedule-label span::before,
+.aa-schedule-label span::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 1px;
+    background: #333;
+}
+
+.aa-schedule-label span::before {
+    right: 100%;
+}
+
+.aa-schedule-label span::after {
+    left: 100%;
+}
+
 /* Small "section divider" used in new sections */
 .aa-divider{
     width: 60px;
