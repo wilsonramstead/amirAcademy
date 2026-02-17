@@ -8523,6 +8523,27 @@ del {
 }
 
 /* ==========================================================
+   About section — iPad fix (stack, centered, clean)
+   ========================================================== */
+@media only screen and (min-width: 768px) and (max-width: 1199px){
+    .about-area2 .support-wrapper{
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .about-area2 .support-wrapper .right-content2{
+        width: 60% !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+    }
+    .about-area2 .support-wrapper .left-content2{
+        width: 85% !important;
+        margin: 0 auto !important;
+        padding: 40px 0 0 !important;
+    }
+}
+
+/* ==========================================================
    "What We Offer" card restyling
    ========================================================== */
 
