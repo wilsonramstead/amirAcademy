@@ -8315,21 +8315,62 @@ del {
     .aa-btn-link{ font-size: 1.10rem; }
 }
 
-/* HERO: photo + diagonal glow */
-.slider-area{
-    background-image:
-        url(../img/hero/h1_hero.png),
-        linear-gradient(
-        135deg,
-        rgba(255,0,0,0.40) 0%,
-        rgba(255,0,0,0.10) 26%,
-        rgba(0,0,0,0.00) 49%,
-        rgba(0,0,0,0.00) 100%
-        ) !important;
-    background-repeat: no-repeat, no-repeat !important;
-    background-position: bottom right, center center !important;
-    background-size: 75% auto, 100% 100% !important;
+/* =========================
+   HERO: DESKTOP / TABLET (photo via ::before so we can apply filters)
+   ========================= */
+@media (min-width: 576px){
+  .slider-area{
+    position: relative !important;
+    overflow: hidden !important;
     background-color: #000 !important;
+    background-image: none !important;
+  }
+
+  /* Photo layer */
+  .slider-area::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(../img/hero/h1_hero.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 75% auto;
+    filter: grayscale(50%) contrast(115%) brightness(0.95) saturate(1.15);
+    z-index: 0;
+  }
+
+  /* Red diagonal glow overlay */
+  .slider-area::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255,0,0,0.40) 0%,
+      rgba(255,0,0,0.10) 26%,
+      rgba(0,0,0,0.00) 49%,
+      rgba(0,0,0,0.00) 100%
+    );
+    z-index: 1;
+  }
+
+  /* Content above layers */
+  .slider-area .single-slider,
+  .slider-area .container,
+  .slider-area .row,
+  .slider-area [class*="col-"],
+  .slider-area .hero__caption{
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* Match template's responsive hero image sizing on the ::before */
+@media only screen and (min-width: 768px) and (max-width: 991px){
+  .slider-area::before{ background-size: 88% auto; }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px){
+  .slider-area::before{ background-size: 98% auto; }
 }
 
 /* =========================
@@ -8375,7 +8416,7 @@ del {
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-position: 85% 55% !important;
-    filter: grayscale(35%) contrast(125%) brightness(1) !important;
+    filter: grayscale(45%) contrast(120%) brightness(0.95) saturate(1.1) !important;
     transform: scale(1.04) !important;
     z-index: 0 !important;
   }
