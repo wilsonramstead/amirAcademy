@@ -3000,7 +3000,7 @@ hr {
 /* line 945, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_common.scss */
 .section-tittle2 p {
   color: #fff;
-  font-size: 18px;
+  font-size: 1.45rem;
 }
 
 /* line 951, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_common.scss */
@@ -3833,7 +3833,7 @@ hr {
 
 /* line 66, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_traning-cat.scss */
 .traning-categories .single-topic .topic-content-box .topic-content p {
-  font-size: 16px;
+  font-size: 1.3rem;
   color: #ffff;
   padding: 0 82px;
   line-height: 1.6;
@@ -8639,7 +8639,7 @@ del {
 }
 .team-area .single-cat .cat-cap p{
     color: #aaa;
-    font-size: 14px;
+    font-size: 1.35rem;
     line-height: 1.7;
     margin: 0;
 }
@@ -8654,7 +8654,7 @@ del {
         font-size: 20px;
     }
     .team-area .single-cat .cat-cap p{
-        font-size: 13px;
+        font-size: 1.25rem;
     }
 }
 
