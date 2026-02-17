@@ -8023,7 +8023,7 @@ del {
 
 .event-story {
   color: #ccc;
-  font-size: 1.25rem;
+  font-size: 1.45rem;
   line-height: 1.85;
 }
 .event-story p {
@@ -8032,7 +8032,7 @@ del {
 }
 .event-location {
   color: #ff0000;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -8041,7 +8041,7 @@ del {
 }
 .event-closing {
   color: white;
-  font-size: 1.35rem;
+  font-size: 1.55rem;
   font-weight: 600;
   font-style: italic;
   text-align: center;
@@ -8119,7 +8119,7 @@ del {
     margin-bottom: 10px;
   }
   .event-story {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   }
   .event-stat .stat-number {
     font-size: 2rem;
