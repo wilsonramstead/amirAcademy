@@ -3363,36 +3363,104 @@ hr {
 
 /* line 18, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_h1-hero.scss */
 .slider-height2 {
-  height: 450px;
+  height: 380px;
   background-size: cover;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   /* line 18, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_h1-hero.scss */
   .slider-height2 {
-    height: 350px;
+    height: 300px;
   }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   /* line 18, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_h1-hero.scss */
   .slider-height2 {
-    height: 260px;
+    height: 250px;
   }
 }
 
 @media (max-width: 575px) {
   /* line 18, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_h1-hero.scss */
   .slider-height2 {
-    height: 260px;
+    height: 250px;
   }
 }
 
 /* line 31, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_h1-hero.scss */
 .slider-area2 {
-  background-image: url(../img/hero/hero2.png);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 40%, #0d0d0d 60%, #1a0000 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Diagonal accent line */
+.slider-area2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 42%,
+    rgba(255, 0, 0, 0.06) 42%,
+    rgba(255, 0, 0, 0.06) 43%,
+    transparent 43%,
+    transparent 57%,
+    rgba(255, 0, 0, 0.04) 57%,
+    rgba(255, 0, 0, 0.04) 57.5%,
+    transparent 57.5%
+  );
+  z-index: 0;
+}
+
+/* Glowing red orb */
+.slider-area2::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.08) 0%, rgba(255, 0, 0, 0.03) 40%, transparent 70%);
+  z-index: 0;
+}
+
+.slider-area2 .slider-height2 {
+  position: relative;
+  z-index: 1;
+}
+
+/* Decorative bottom edge */
+.slider-area2 .hero-cap {
+  position: relative;
+}
+
+.slider-area2 .hero-cap::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff0000, #cc0000);
+  margin-top: 20px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+}
+
+.slider-area2 .hero-cap h2 {
+  text-shadow: 0 0 40px rgba(255, 0, 0, 0.15);
+  letter-spacing: 3px;
+}
+
+/* Subtle bottom border glow for slider-area2 */
+.slider-area2-border {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.5), #ff0000, rgba(255, 0, 0, 0.5), transparent);
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.3);
 }
 
 /* line 37, C:/Users/HP/Desktop/July-HTML/292 Health coach/assets/scss/_h1-hero.scss */
