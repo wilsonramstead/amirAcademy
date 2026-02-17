@@ -8515,6 +8515,129 @@ del {
 }
 
 /* ==========================================================
+   "What We Offer" — section spacing
+   ========================================================== */
+.team-area.fix{
+    padding-top: 50px;
+    border-top: 1px solid rgba(255,0,0,0.12);
+}
+
+/* ==========================================================
+   "What We Offer" card restyling
+   ========================================================== */
+
+.team-area .single-cat{
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,0,0,0.15);
+    border-radius: 16px;
+    padding: 0;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.team-area .single-cat:hover{
+    transform: translateY(-8px);
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.5),
+        0 0 30px rgba(255,0,0,0.12);
+    border-color: rgba(255,0,0,0.4);
+}
+
+/* Image wrapper */
+.team-area .single-cat .cat-icon{
+    position: relative;
+    overflow: hidden;
+}
+.team-area .single-cat .cat-icon img{
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    display: block;
+    margin: 0;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    filter: grayscale(15%) contrast(110%) brightness(0.95);
+}
+.team-area .single-cat:hover .cat-icon img{
+    transform: scale(1.08);
+    filter: grayscale(0%) contrast(115%) brightness(1) saturate(1.15);
+}
+
+/* Dark gradient over image bottom for smooth text transition */
+.team-area .single-cat .cat-icon::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.85) 0%,
+        rgba(0,0,0,0.30) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Red accent line between image and text */
+.team-area .single-cat .cat-icon::before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: #ff0000;
+    z-index: 2;
+    transition: width 0.4s ease;
+}
+.team-area .single-cat:hover .cat-icon::before{
+    width: 50px;
+}
+
+/* Text area */
+.team-area .single-cat .cat-cap{
+    padding: 22px 20px 26px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.team-area .single-cat .cat-cap h5,
+.team-area .single-cat .cat-cap h5 > a{
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-family: "Oswald", sans-serif;
+}
+.team-area .single-cat .cat-cap p{
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Mobile: 2 columns, then 1 on very small */
+@media (max-width: 575px){
+    .team-area .single-cat .cat-icon img{
+        aspect-ratio: 4/3;
+    }
+    .team-area .single-cat .cat-cap h5,
+    .team-area .single-cat .cat-cap h5 > a{
+        font-size: 20px;
+    }
+    .team-area .single-cat .cat-cap p{
+        font-size: 13px;
+    }
+}
+
+/* ==========================================================
    Ambient dark background — fixed glow that stays in viewport
    ========================================================== */
 
