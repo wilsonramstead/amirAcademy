@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://amiracademy.com/sitemap.xml
+
+Disallow: /doc/
+Disallow: /elements.html
+Disallow: /courses.html
