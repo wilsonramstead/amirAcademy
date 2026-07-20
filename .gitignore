@@ -1,0 +1,9 @@
+# Quarantined full-resolution originals (kept locally, not deployed)
+_originals/
+
+# OS junk
+Thumbs.db
+.DS_Store
+
+# Node (if a build/tooling step is ever added)
+node_modules/
