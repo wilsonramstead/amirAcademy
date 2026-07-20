@@ -39,3 +39,7 @@ Most gym-site traffic is mobile — mobile is the primary target, not an afterth
 
 ## Progress log
 - 2026-07-20 — Plan created. No changes made.
+
+## 2026-07-20 — IMPLEMENTED
+- New layout is mobile-first: fluid clamp() type scale, grids collapse 3->2->1, gallery auto-fill, schedule table scrolls in .table-wrap, custom mobile nav with "Book a Free Class" CTA now VISIBLE on mobile (was d-none), 44px+ touch targets.
+- REMAINING (Wilson): real-device walk at 360/768/1024 widths — see A1 checklist.

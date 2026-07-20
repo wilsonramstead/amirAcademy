@@ -1,6 +1,8 @@
 # Amir Academy Website — Master Improvement Plan
 
-**Status:** PLANNING COMPLETE — work NOT started (per Wilson's instruction)
+**Status:** REBUILD IMPLEMENTED 2026-07-20 on local `improvements` branch — NOT pushed.
+Wilson: preview locally (`python -m http.server 8000`), then merge/push manually.
+Outstanding items needing Wilson: see "REMAINING" notes in files 01, 04, 05, 07, 08.
 **Created:** 2026-07-20 by Fable
 **Site:** https://amiracademy.com (GitHub Pages, CNAME present, branch `master` = live)
 

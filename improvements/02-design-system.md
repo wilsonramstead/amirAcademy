@@ -49,3 +49,9 @@ dark, energetic, confident. Site must stay unmistakably Amir Academy.
 
 ## Progress log
 - 2026-07-20 — Plan created. No changes made.
+
+## 2026-07-20 — IMPLEMENTED
+- Full rebuild instead of polish pass (Wilson approved structure changes). site.css = single source of truth: tokens (color/type/space/radius/shadow/motion), buttons, cards, grids, hero, gallery, schedule table, pricing card, forms, footer.
+- Typography: Oswald (display, uppercase) + Inter (body). All three icon fonts dropped (no icon fonts remain).
+- Inline styles: 428 -> 3 sitewide (all intentional one-offs).
+- Old template CSS (bootstrap + 12 others, ~9,000-line style.css) deleted.

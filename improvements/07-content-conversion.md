@@ -42,3 +42,7 @@ copy improvement in this file.
 
 ## Progress log
 - 2026-07-20 — Plan created. No changes made.
+
+## 2026-07-20 — IMPLEMENTED
+- Funnel unbroken: form posts to Formspree placeholder w/ mailto fallback (never a dead end); "Book a Free Class" CTA in header on every page incl. mobile; hero has real value prop + dual CTAs; cta-band on every page; stale "Next Event: May 9" fixed; index/about duplication resolved (index=overview, about=full story+bios); name spellings standardized (Rasa Lukosiute, Brandon Spenser — VERIFY with Amir which spelling is correct).
+- REMAINING (needs Wilson): Formspree account, testimonials/Google reviews material, social media links (none exist on site), free-trial offer wording confirmation ("first class is always free" — confirm this is accurate!).

@@ -57,3 +57,11 @@ may never finish loading. For a local gym site, most visitors ARE on phones.
 
 ## Progress log
 - 2026-07-20 — Plan created; initial findings recorded. No changes made.
+
+## 2026-07-20 — IMPLEMENTED
+- I1/I2/I3 DONE: 552.9 MB of PNGs -> 13.9 MB WebP (max 1600w, q78) + 480px gallery thumbs; every gallery uses thumb->lightbox; all non-hero imgs lazy; hero preloaded fetchpriority=high. kids15.png was a 0-byte dead file (deleted).
+- I4 PARTIAL: facility.mov now click-to-play (preload="none" + poster) on facility.html only; removed from homepage. Actual conversion to MP4 needs ffmpeg — left for Wilson (or install ffmpeg and I'll compress it).
+- I5/I7 DONE beyond plan: 13 CSS files -> 1 (site.css); ~24 JS files -> 1 (site.js, vanilla); zero jQuery. Google Fonts (Oswald/Inter) with preconnect.
+- I6 DONE: preloader removed entirely.
+- I8 DONE: originals quarantined in _originals/ (gitignored, 553 MB, kept locally).
+- assets/ folder: 584 MB -> 35 MB. Remaining heavy file: facility.mov (19 MB, click-to-play only).

@@ -56,3 +56,9 @@ never committed by us. Originals of anything valuable (photos) are preserved.
 
 ## Progress log
 - 2026-07-20 — Plan created. No changes made.
+
+## 2026-07-20 — IMPLEMENTED
+- I1 DONE (placeholder): form -> Formspree FORM_ID placeholder + mailto fallback in site.js; contact_process.php deleted. Wilson: create Formspree form, replace FORM_ID in contact.html.
+- C1-C8 ALL DONE: doc/, main.html, songs/, scss/, fonts/, both jQuerys, all 24 old JS files, all 13 old CSS files deleted. courses.html = redirect stub. Originals in _originals/ (gitignored).
+- H1 DONE (.gitignore). A3 DONE (webmanifest created, sitemap updated, 404.html added).
+- Link check: 0 broken refs across all 10 pages. Structural check: 1 h1/page, unique titles.

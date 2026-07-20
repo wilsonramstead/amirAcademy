@@ -40,3 +40,6 @@ No new heavy libraries — prefer CSS transitions/animations and small vanilla J
 
 ## Progress log
 - 2026-07-20 — Plan created. No changes made.
+
+## 2026-07-20 — IMPLEMENTED
+- IntersectionObserver reveals (.reveal/.reveal-stagger), consistent hover states (cards lift, buttons, nav underline), custom vanilla lightbox w/ keyboard nav, animated mobile nav, sticky blur header. prefers-reduced-motion respected globally. WOW/animate.css/owl/slick and all jQuery motion libs removed.

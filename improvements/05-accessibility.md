@@ -41,3 +41,7 @@
 
 ## Progress log
 - 2026-07-20 — Plan created. No changes made.
+
+## 2026-07-20 — IMPLEMENTED
+- Skip links, landmarks, exactly one h1/page (verified), no skipped heading levels, aria-current nav state, form labels + aria-live status, lightbox keyboard nav (Esc/arrows) + focus return, :focus-visible styles, meaningful alts sitewide, prefers-reduced-motion.
+- REMAINING: contrast measurement pass (A3) + Lighthouse/axe run (A6) once previewed in browser.

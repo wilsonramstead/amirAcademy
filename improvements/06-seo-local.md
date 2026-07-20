@@ -37,3 +37,7 @@ petersburg", "bjj st pete", "kids martial arts st petersburg", "boxing gym near 
 
 ## Progress log
 - 2026-07-20 — Plan created. No changes made.
+
+## 2026-07-20 — IMPLEMENTED
+- MartialArtsSchool JSON-LD (address/phones/hours/geo) on every page; unique titles+descriptions+canonicals per page; OG/Twitter images now real photo (was logo); sitemap.xml +gallery.html; 404.html created; site.webmanifest created (was a 404 on every page!); courses.html now noindex redirect stub.
+- NOTE for Wilson: old contact.html had an exposed Google Maps API key (also in git history) — revoke/restrict it in Google Cloud Console. New map is a keyless embed.
