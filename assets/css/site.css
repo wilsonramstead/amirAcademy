@@ -189,6 +189,13 @@ p { max-width: 65ch; }
 .nav-list a:hover { color: var(--c-text); }
 .nav-list a[aria-current="page"] { color: var(--c-text); border-bottom-color: var(--c-red); }
 .nav-cta { margin-left: var(--sp-4); }
+.nav-list a.nav-cta {
+  padding: 0.7em 1.6em;
+  border-bottom: none;
+  color: #fff;
+  font-size: var(--fs-sm);
+}
+.nav-list a.nav-cta:hover { color: #fff; }
 
 .nav-toggle { display: none; width: 48px; height: 48px; position: relative; z-index: 60; }
 .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after {
@@ -330,7 +337,7 @@ table.schedule { width: 100%; border-collapse: collapse; font-size: var(--fs-sm)
 .schedule td strong { color: var(--c-text); }
 
 /* ---------- Pricing ---------- */
-.price-card { display: flex; flex-direction: column; text-align: center; padding: var(--sp-6); }
+.price-card { display: flex; flex-direction: column; text-align: center; padding: var(--sp-6); overflow: visible; margin-top: 0.8rem; }
 .price-card--featured { border-color: var(--c-red); position: relative; }
 .price-card__badge {
   position: absolute; top: -0.8rem; left: 50%; transform: translateX(-50%);
