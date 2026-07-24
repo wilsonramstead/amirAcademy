@@ -18,7 +18,8 @@
       "Read(//c/Projects/**)",
       "Bash(rm -rf vendor)",
       "Bash(grep -v '^site.js$')",
-      "Read(//c//**)"
+      "Read(//c//**)",
+      "Bash(sed -i 's|<div class=\"gallery-grid reveal-stagger\">|<div class=\"gallery-grid gallery-grid--3 reveal-stagger\">|' gallery.html)"
     ]
   }
 }

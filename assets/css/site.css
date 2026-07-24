@@ -138,6 +138,17 @@ p { max-width: 65ch; }
   .grid--2, .grid--3, .grid--4 { grid-template-columns: 1fr; }
 }
 
+/* Centered wrap grid: incomplete last rows center instead of left-aligning
+   (use for card sets that don't divide evenly, e.g. 5 programs in 3 columns) */
+.grid--center { display: flex; flex-wrap: wrap; justify-content: center; }
+.grid--center > * { width: calc((100% - 2 * var(--sp-5)) / 3); }
+@media (max-width: 900px) {
+  .grid--center > * { width: calc((100% - var(--sp-5)) / 2); }
+}
+@media (max-width: 600px) {
+  .grid--center > * { width: 100%; }
+}
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2);
@@ -293,6 +304,9 @@ p { max-width: 65ch; }
 
 /* ---------- Gallery ---------- */
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--sp-3); }
+/* Fixed-count variant: always-complete rows for 6-photo sets (3 -> 2 -> 2 cols) */
+.gallery-grid--3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 900px) { .gallery-grid--3 { grid-template-columns: repeat(2, 1fr); } }
 .gallery-grid a {
   position: relative; display: block; overflow: hidden; border-radius: var(--radius);
   aspect-ratio: 1; background: var(--c-surface-2);
@@ -490,12 +504,14 @@ table.schedule { width: 100%; border-collapse: collapse; font-size: var(--fs-sm)
 .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgb(224 43 52 / 0.4); }
 .btn--ghost:hover { transform: translateY(-2px); }
 
-/* Coach grid: grayscale -> color */
-.team-grid .card__media img {
-  filter: grayscale(1) contrast(1.06);
-  transition: filter var(--t-med) var(--ease), transform var(--t-med) var(--ease);
+/* Coach grid: grayscale -> color (hover-capable devices only; touch gets color) */
+@media (hover: hover) and (pointer: fine) {
+  .team-grid .card__media img {
+    filter: grayscale(1) contrast(1.06);
+    transition: filter var(--t-med) var(--ease), transform var(--t-med) var(--ease);
+  }
+  .team-grid .card:hover .card__media img { filter: grayscale(0); }
 }
-.team-grid .card:hover .card__media img { filter: grayscale(0); }
 
 /* Featured pricing glow */
 .price-card--featured { box-shadow: 0 0 70px rgb(224 43 52 / 0.16); }
