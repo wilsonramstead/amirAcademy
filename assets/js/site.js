@@ -59,9 +59,11 @@
       '<button class="lightbox__close" aria-label="Close">&#10005;</button>' +
       '<button class="lightbox__prev" aria-label="Previous photo">&#8592;</button>' +
       '<img alt="">' +
-      '<button class="lightbox__next" aria-label="Next photo">&#8594;</button>';
+      '<button class="lightbox__next" aria-label="Next photo">&#8594;</button>' +
+      '<span class="lightbox__count" aria-hidden="true"></span>';
     document.body.appendChild(lb);
     var lbImg = lb.querySelector('img');
+    var lbCount = lb.querySelector('.lightbox__count');
     var current = -1;
     var lastFocus = null;
 
@@ -71,6 +73,7 @@
       lbImg.src = link.getAttribute('href');
       var thumb = link.querySelector('img');
       lbImg.alt = thumb ? thumb.alt : '';
+      lbCount.textContent = (current + 1) + ' / ' + lbLinks.length;
     }
     function open(i) {
       lastFocus = document.activeElement;
@@ -145,6 +148,34 @@
         if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
       });
     });
+  }
+
+  /* ----- Stat count-up ----- */
+  var stats = document.querySelectorAll('.stat__num');
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (stats.length && 'IntersectionObserver' in window && !reduceMotion) {
+    var statIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        statIO.unobserve(entry.target);
+        var el = entry.target;
+        var m = el.textContent.trim().match(/^(\d+)(.*)$/);
+        if (!m) return;
+        var target = parseInt(m[1], 10);
+        var suffix = m[2];
+        var start = null;
+        var DURATION = 1200;
+        function tick(now) {
+          if (start === null) start = now;
+          var p = Math.min((now - start) / DURATION, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.4 });
+    stats.forEach(function (s) { statIO.observe(s); });
   }
 
   /* ----- Footer year ----- */
